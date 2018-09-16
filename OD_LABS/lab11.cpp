@@ -47,8 +47,9 @@ void inform()
   cout << "enter '2' to sort array of structures" << endl;
   cout << "enter '3' to object data output" << endl;
   cout << "enter '4' to search object" << endl;
-  cout << "enter '5' to recording object data" << endl;
-  cout << "enter '6' to read binary file" << endl;
+  cout << "enter '5' to recording binary file" << endl;
+  cout << "enter '6' to write down information in text file"
+  cout << "enter '7' to read binary file" << endl;
   cout << "enter anything else to exit" << endl;
   cout << endl;
 }
@@ -142,6 +143,11 @@ bool enter(vector <BankAccount>& bank_account)
         into_a_file << bank_account;
       }
       into_a_file.close();
+      return true;
+      break;
+    }
+    case 7:
+    {
       return true;
       break;
     }
