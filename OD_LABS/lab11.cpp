@@ -70,6 +70,15 @@ istream& operator>>(istream & is, vector <BankAccount>& bank_account)
 
 ostream & operator<<(ostream & os, vector <BankAccount>& bank_account)
 {
+  os << bank_account.size() << endl;
+  for(unsigned int i = 0; i < bank_account.size(); i++)
+  {
+    os << bank_account[i].account_number << " "
+       << bank_account[i].summ << " "
+       << bank_account[i].fio << " "
+       << bank_account[i].opening_date
+       << endl;
+  }
   return os;
 }
 
