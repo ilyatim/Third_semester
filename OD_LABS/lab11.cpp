@@ -102,39 +102,48 @@ bool enter(vector <BankAccount>& bank_account)
         from_a_file >> bank_account;
       }
       from_a_file.close();
+      return true;
       break;
     }
     case 2:
     {
       ordering(bank_account);
+      if(bank_account.size())
+        cout << "u're array was ordering" << endl;
+      return true;
       break;
     }
     case 3:
     {
+      cout << bank_account.size() << " bank accounts" << endl;
       output(bank_account);
+      return true;
       break;
     }
     case 4:
     {
-
+      return true;
+      break;
     }
     case 5:
     {
-
+      return true;
+      break;
     }
     case 6:
     {
-    cout << "enter the name of the file in which to load the structures" << endl;
-     string name;
-     cin >> name;
-     ofstream into_a_file;
-     into_a_file.open(name);
-     if(into_a_file.is_open())
-     {
-       into_a_file << bank_account;
-     }
-     into_a_file.close();
-     break;
+      cout << "enter the name of the file in which to load the structures" << endl;
+      string name;
+      cin >> name;
+      ofstream into_a_file;
+      into_a_file.open(name);
+      if(into_a_file.is_open())
+      {
+        into_a_file << bank_account;
+      }
+      into_a_file.close();
+      return true;
+      break;
     }
     default:
     {
@@ -150,10 +159,11 @@ int search(int number)
 }
 void ordering(vector <BankAccount>& bank_account)
 {
-  int temp;
   if(bank_account.size() == 0)
     cout << "empty array" << endl;
   else
+  {
+    int temp;
     for (unsigned int i = 0; i < bank_account.size() - 1; i++)
       for (unsigned int j = 0; j < bank_account.size() - i - 1; j++)
         if (bank_account[j].account_number > bank_account[j + 1].account_number)
@@ -162,13 +172,15 @@ void ordering(vector <BankAccount>& bank_account)
           bank_account[j].account_number = bank_account[j + 1].account_number;
           bank_account[j + 1].account_number = temp;
         }
+  }
 }
 void output(vector <BankAccount>& bank_account)
 {
-  ordering(bank_account);
   if(bank_account.size() == 0)
     cout << "empty array" << endl;
   else
+  {
+    ordering(bank_account);
     for(unsigned int i = 0; i < bank_account.size(); i++)
     {
       cout << "account number:" << bank_account[i].account_number << endl;
@@ -177,4 +189,5 @@ void output(vector <BankAccount>& bank_account)
       cout << "open Date:" << bank_account[i].opening_date << endl;
       cout << endl;
     }
+  }
 }
