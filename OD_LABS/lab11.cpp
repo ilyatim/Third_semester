@@ -36,7 +36,10 @@ void output(vector <BankAccount>& bank_account);
 int main()
 {
   vector <BankAccount> bank_account;
-  while(enter(bank_account));
+  while(enter(bank_account))
+  {
+
+  }
   return 0;
 }
 //////////////////////////////////////////////////
@@ -103,7 +106,6 @@ bool enter(vector <BankAccount>& bank_account)
         from_a_file >> bank_account;
       }
       from_a_file.close();
-      return true;
       break;
     }
     case 2:
@@ -111,24 +113,20 @@ bool enter(vector <BankAccount>& bank_account)
       ordering(bank_account);
       if(bank_account.size())
         cout << "u're array was ordering" << endl;
-      return true;
       break;
     }
     case 3:
     {
       cout << bank_account.size() << " bank accounts" << endl;
       output(bank_account);
-      return true;
       break;
     }
     case 4:
     {
-      return true;
       break;
     }
     case 5:
     {
-      return true;
       break;
     }
     case 6:
@@ -143,12 +141,10 @@ bool enter(vector <BankAccount>& bank_account)
         into_a_file << bank_account;
       }
       into_a_file.close();
-      return true;
       break;
     }
     case 7:
     {
-      return true;
       break;
     }
     default:
