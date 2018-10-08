@@ -12,6 +12,6 @@ int main()
   if(count(name.begin(), name.end(), c) == 1)
     cout << "good e-mail))" << endl;
   else
-    cout << "wrong e-mail, unacceptable symbol, too more '@'" << endl;
+    cout << "wrong e-mail, unacceptable symbol" << endl;
   return 0;
 }

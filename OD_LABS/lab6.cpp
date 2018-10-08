@@ -29,13 +29,14 @@ int main()
     switch (choice)
     {
       case 1:
+      {
         cout << "how many element do you want to add?" << endl;
         cin >> size;
         if(!isdigit(size))
         {
           for(unsigned int i = 0; i < size; i++)
           {
-            cout << "enter element " << i + 1 << " ";
+            cout << "enter element " << i + 1 << " - ";
             cin >> element;
             if(!isdigit(element))
             {
@@ -49,7 +50,9 @@ int main()
         else
           cout << "not number" << endl;
         break;
+      }
       case 2:
+      {
         cout << "what element u want to delete?" << endl;
         cin >> element;
         if(!isdigit(element) && element >= 0)
@@ -59,18 +62,24 @@ int main()
         else
           cout << "not number" << endl;
         break;
+      }
       case 3:
+      {
         if(_vector.size())
           printArray(_vector);
         else
           cout << "empty array" << endl;
         break;
+      }
       case 4:
+      {
         cout << "where would u like enter element?" << endl;
         cin >> element;
         addElementInArray(element, _vector);
         break;
+      }
       case 5:
+      {
         if(!_vector.empty())
           {
             cout << "index of first max element = ";
@@ -79,9 +88,12 @@ int main()
         else
           cout << "empty array" << endl;
         break;
+      }
       default:
+      {
         i = false;
         break;
+      }
     }
   }
   _vector.clear();
@@ -102,13 +114,8 @@ void deleteElement(int number, vector <int>& _vector)
 {
   if(doesExist(number, _vector))
   {
-    unsigned int i = 0;
-    while(i < number)
-    {
-      i++;
-    }
-    _vector[i] = _vector[_vector.size() - 1];
-    _vector.pop_back();
+    for(unsigned int i = 0; i < number; i++) {}
+    _vector.erase(_vector.begin() + i - 1);
   }
   else
     cout << "this element does not exist" << endl;
