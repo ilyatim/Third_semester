@@ -6,9 +6,11 @@ public abstract class Animal
     private int growth;
     private int weight;
     private int num_of_leg;
+    private String name;
 
-    public Animal(boolean vegetarian, int _growth, int _weight, int number)
+    public Animal(String _name, boolean vegetarian, int _growth, int _weight, int number)
     {
+        this.name = _name;
         this.isVegetarian = vegetarian;
         this.growth = _growth;
         this.weight = _weight;
@@ -46,20 +48,20 @@ public abstract class Animal
     {
         return num_of_leg;
     }
+    public String getName()
+    {
+        return name;
+    }
+    public abstract String getKind();
 }
 
 class Cat extends Animal
 {
     private boolean is_satiety;
-    public Cat(boolean veg, int _growth, int _weight, int number)
+    public Cat(String _name, boolean veg, int _growth, int _weight)
     {
-        super(veg, _growth, _weight, number);
+        super(_name, veg, _growth, _weight, 4);
         this.is_satiety = false;
-    }
-    public Cat(boolean veg, int _growth, int _weight, int number, boolean satiety)
-    {
-        super(veg, _growth, _weight, number);
-        this.is_satiety = satiety;
     }
     public void feed_the_cat()
     {
@@ -73,23 +75,22 @@ class Cat extends Animal
         else
             System.out.println("the cat is not fed. Pls, fed the cat");
     }
+    public String getKind()
+    {
+        String type = "Cat";
+        return type;
+    }
 }
 
 class  Dog extends Animal
 {
     private boolean is_caress;
     private boolean is_walking;
-    public Dog(boolean veg, int _growth, int _weight, int number)
+    public Dog(String _name, int _growth, int _weight)
     {
-        super(veg, _growth, _weight, number);
+        super(_name,true, _growth, _weight, 4);
         this.is_caress = false;
         this.is_walking = false;
-    }
-    public Dog(boolean veg, int _growth, int _weight, int number, boolean affection, boolean walk)
-    {
-        super(veg, _growth, _weight, number);
-        this.is_caress = affection;
-        this.is_walking = walk;
     }
     public void pat()
     {
@@ -107,31 +108,28 @@ class  Dog extends Animal
         else
             System.out.println("the dog want to go walk");
     }
+    public void menu()
+    {
+        System.out.println("1 - to pat u're dog");
+        System.out.println("2 - to walk with u're dog");
+        System.out.println("3 - take an interest is the dog walking?");
+        System.out.println("4 - to know the name");
+        System.out.println("5 - to know the weight and growth");
+    }
+    public String getKind()
+    {
+        String type = "Dog";
+        return type;
+    }
 }
 
 class Snake extends Animal
 {
-    private String name;
     private boolean is_domesticate;
-    public Snake(boolean veg, int _growth, int _weight)
+    public Snake(String _name, boolean veg, int _growth, int _weight)
     {
-        super(veg, _growth, _weight, 0);
-        this.name = "viper";
+        super(_name, veg, _growth, _weight, 0);
         this.is_domesticate = false;
-    }
-    public Snake(boolean veg, int _growth, int _weight, String _name, boolean is_pet)
-    {
-        super(veg, _growth, _weight, 0);
-        this.name = _name;
-        this.is_domesticate = is_pet;
-    }
-    public String getName()
-    {
-        return name;
-    }
-    public void setName(String _name)
-    {
-        this.name = _name;
     }
     public boolean getis_domesticate()
     {
@@ -147,5 +145,10 @@ class Snake extends Animal
     public void tame()
     {
         this.is_domesticate = true;
+    }
+    public String getKind()
+    {
+        String type = "Snake";
+        return type;
     }
 }
