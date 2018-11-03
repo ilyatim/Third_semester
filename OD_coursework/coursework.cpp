@@ -47,24 +47,20 @@ bool input(Dictionary& dictionary)
     {
       string name_1, name_2;
       char make;
+      make = getchar();
       cout << "enter world what u want to record" << endl;
-      cin >> name_1;
+      getline(cin, name_1, '\n');
       cout << "what definition will you give to this word" << endl;
-      for(;;)
-      {
-        make = getchar();
-        if(make == 13 || make == 10)
-        {
-          continue;
-        }
-        getline(cin, name_2);
-        break;
-      }
+      getline(cin, name_2, '\n');
       dictionary.new_word(name_1, name_2);
       break;
     }
     case 3:
     {
+      string name;
+      cout << "what word do u like to delete?" << endl;
+      cin >> name;
+      dictionary.delete_word(name);
       break;
     }
     case 4:
@@ -77,6 +73,25 @@ bool input(Dictionary& dictionary)
     }
     case 5:
     {
+      string name;
+      int choice;
+      cout << "do you want to change the word or definition? 1 -word, 2 - definition" << endl;
+      switch(choice)
+      {
+        case 1:
+        {
+          cout << "what word u like to change?" << endl;
+          cin >> name;
+          dictionary.change_word(name);
+          break;
+        }
+        case 2:
+        {
+          cout << "what definition u like to change?" << endl;
+          cin >> name;
+          dictionary.change_definition(name);
+        }
+      }
       break;
     }
     case 6:
@@ -89,13 +104,7 @@ bool input(Dictionary& dictionary)
       cout << "enter the name of the file in which to load the dictionary" << endl;
       string name;
       cin >> name;
-      ofstream into_a_file;
-      into_a_file.open(name);
-      if(into_a_file.is_open())
-      {
-        into_a_file << dictionary;
-      }
-      into_a_file.close();
+      dictionary.in_text(name);
       break;
     }
     case 8:
@@ -103,13 +112,7 @@ bool input(Dictionary& dictionary)
       cout << "enter the name of the file from which to load the dictionary" << endl;
       string name;
       cin >> name;
-      ifstream from_a_file;
-      from_a_file.open(name);
-      if(from_a_file.is_open())
-      {
-        from_a_file >> dictionary;
-      }
-      from_a_file.close();
+      dictionary.from_text(name, dictionary);
       break;
     }
     default:

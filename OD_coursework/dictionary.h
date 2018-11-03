@@ -4,22 +4,25 @@
 #include <cstring>
 #include <map>
 #include <utility>
+#include <fstream>
 class Dictionary
 {
 private:
   std::multimap <std::string, std::string> mapDictionary;
   bool exist_key(std::string name_1, std::string name_2);
 public:
-  int getSize();
   void empty_dictionary();
   void new_word(std::string name_1, std::string name_2);
-  void delete_word();
+  void delete_word(std::string name);
   void search(std::string name);
-  void change_word();
+  void change_word(std::string name);
+  void change_definition(std::string name);
   void output();
-  friend std::ostream & operator<<(std::ostream & os, Dictionary& dictionary);
-  friend std::istream & operator>>(std::istream & is, Dictionary& dictionary);
+  void in_text(std::string name);
+  void from_text(std::string name, Dictionary& dictionary);
+//  friend std::ostream & operator<<(std::ostream & os, Dictionary& dictionary);
+//  friend std::istream & operator>>(std::istream & is, Dictionary& dictionary);
 };
-std::istream & operator>>(std::istream & is, Dictionary& dictionary);
-std::ostream & operator<<(std::ostream & os, Dictionary& dictionary);
+//std::istream & operator>>(std::istream & is, Dictionary& dictionary);
+//std::ostream & operator<<(std::ostream & os, Dictionary& dictionary);
 #endif

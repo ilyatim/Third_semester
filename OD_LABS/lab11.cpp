@@ -27,7 +27,7 @@ ostream & operator<<(ostream & os, vector <BankAccount>& bank_account);
 
 bool enter(vector <BankAccount>& bank_account);
 
-int search(int number);
+int search(vector <BankAccount>& bank_account, int key);
 
 void ordering(vector <BankAccount>& bank_account);
 
@@ -50,9 +50,7 @@ void inform()
   cout << "enter '2' to sort array of structures" << endl;
   cout << "enter '3' to object data output" << endl;
   cout << "enter '4' to search object" << endl;
-  cout << "enter '5' to recording binary file" << endl;
-  cout << "enter '6' to write down information in text file"
-  cout << "enter '7' to read binary file" << endl;
+  cout << "enter '5' to write down information in text file" << endl;
   cout << "enter anything else to exit" << endl;
   cout << endl;
 }
@@ -119,17 +117,35 @@ bool enter(vector <BankAccount>& bank_account)
     {
       cout << bank_account.size() << " bank accounts" << endl;
       output(bank_account);
+      return true;
       break;
     }
     case 4:
     {
+      if(bank_account.size() == 0)
+        cout << "error" << endl;
+      else
+      {
+        int key;
+        cout << "enter number of bank account what u want" << endl;
+        ordering(bank_account);
+        cin >> key;
+        int otvet = search(bank_account, key);
+        if(otvet != -1)
+        {
+          cout << endl;
+          cout << bank_account[otvet].account_number << endl;
+          cout << bank_account[otvet].summ << endl;
+          cout << bank_account[otvet].fio << endl;
+          cout << bank_account[otvet].opening_date << endl;
+          cout << endl;
+        }
+        else
+          cout << "wrong account number" << endl;
+      }
       break;
     }
     case 5:
-    {
-      break;
-    }
-    case 6:
     {
       cout << "enter the name of the file in which to load the structures" << endl;
       string name;
@@ -143,10 +159,6 @@ bool enter(vector <BankAccount>& bank_account)
       into_a_file.close();
       break;
     }
-    case 7:
-    {
-      break;
-    }
     default:
     {
       return false;
@@ -155,9 +167,23 @@ bool enter(vector <BankAccount>& bank_account)
   }
 }
 
-int search(int number)
+int search(vector <BankAccount>& bank_account, int key)
 {
-
+    int mid=0;
+    int left=0;
+    int right=bank_account.size()-1;
+    while(1)
+    {
+        mid=(left+right)/2;
+        if(key<bank_account[mid].account_number)
+            right=mid-1;
+        else if(key>bank_account[mid].account_number)
+            left=mid+1;
+        else
+            return mid;
+        if(left>right)
+            return -1;
+    }
 }
 void ordering(vector <BankAccount>& bank_account)
 {
