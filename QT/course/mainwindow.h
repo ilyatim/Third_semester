@@ -6,6 +6,7 @@
 #include "delete.h"
 #include "ui_mainwindow.h"
 #include "vvod_slov.h"
+#include "change.h"
 namespace Ui {
 class MainWindow;
 }
@@ -21,6 +22,10 @@ signals:
     void sendWords(Dictionary &dictionary);
 private slots:
     void receiveData(QString word, QString definition);
+
+    void receiceWordToDelete(QString);
+
+    void receiceWordToChange(QString);
 
     void on_pushButton_clicked();
 
@@ -40,11 +45,14 @@ private slots:
 
     void on_action_5_triggered();
 
+    void on_pushButton_5_clicked();
+
 private:
     Dictionary dictionary;
     Ui::MainWindow *ui;
     vvod_slov *enter;
     Delete *del;
+    Change *change;
 };
 
 #endif // MAINWINDOW_H

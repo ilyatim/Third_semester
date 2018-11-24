@@ -29,19 +29,22 @@ SOURCES += \
         mainwindow.cpp \
         dictionary.cpp \
     vvod_slov.cpp \
-    delete.cpp
+    delete.cpp \
+    change.cpp
 
 HEADERS += \
         mainwindow.h \
         dicitionary.h \
     dictionary.h \
     vvod_slov.h \
-    delete.h
+    delete.h \
+    change.h
 
 FORMS += \
         mainwindow.ui \
     vvod_slov.ui \
-    delete.ui
+    delete.ui \
+    change.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

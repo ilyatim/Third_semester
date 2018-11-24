@@ -28,10 +28,7 @@ void Dictionary::new_word(string name_1, string name_2)
 }
 void Dictionary::delete_word(string name)
 {
-  if(mapDictionary.count(name))
-    mapDictionary.erase(name);
-  else
-    QMessageBox::critical(0, "Warning", "WRONG WORD");
+  mapDictionary.erase(name);
 }
 bool Dictionary::search(string name)
 {
@@ -41,16 +38,15 @@ bool Dictionary::search(string name)
       return false;
 }
 
-void Dictionary::change_definition(string name)
+void Dictionary::change_definition(string name, string new_name)
 {
   multimap <string, string>::iterator it = mapDictionary.begin();
-  for(unsigned int i = 0; it != mapDictionary.end(); it++, i++)
+  for(it; it != mapDictionary.end(); it++)
   {
-    if(it->second == name)
+    if(it->first == name)
     {
-      cout << "enter new name of this word" << endl;
-      getline(cin, name, '\n');
-      it->second = name;
+      it->second = new_name;
+      break;
     }
   }
 }
@@ -114,10 +110,8 @@ int Dictionary::getSize()
 }
 string Dictionary::getName(int number)
 {
-    if(number > mapDictionary.size())
-        return NULL;
     multimap <string, string>::iterator it = mapDictionary.begin();
-    for(int i = 0; it != mapDictionary.end(); i++, it++)
-    {}
+    for(int i = 0; i < number; i++)
+        it++;
     return it->first;
 }

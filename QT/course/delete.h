@@ -14,13 +14,15 @@ class Delete : public QWidget
 public:
     explicit Delete(QWidget *parent = nullptr);
     ~Delete();
+    void enterWords(Dictionary&);
 signals:
     void firstWindow();
-
+    void sendWordToDelete(QString);
 private slots:
-    void receiveData(Dictionary &dictionary);
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::Delete *ui;

@@ -10,12 +10,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     enter = new vvod_slov();
     del = new Delete();
+    change = new Change();
 
     connect(enter, &vvod_slov::firstWindow, this, &MainWindow::show);
     connect(del, &Delete::firstWindow, this, &MainWindow::show);
+    connect(change, &Change::firstWindow, this, &MainWindow::show);
 
     connect(enter, SIGNAL(sendData(QString, QString)), this, SLOT(receiveData(QString, QString)));
-    connect(this, SIGNAL(sendWords(Dictionary &dictionary)), del, SLOT(receiveData(Dictionary &dictionary)));
+    connect(del, SIGNAL(sendWordToDelete(QString)), this, SLOT(receiceWordToDelete(QString)));
+    connect(change, SIGNAL(sendWordToChange(QString)), this, SLOT(receiceWordToChange(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -26,6 +29,27 @@ MainWindow::~MainWindow()
 void MainWindow::receiveData(QString word, QString definition)
 {
     dictionary.new_word(word.toStdString(), definition.toStdString());
+}
+
+void MainWindow::receiceWordToDelete(QString name)
+{
+    dictionary.delete_word(name.toStdString());
+}
+
+void MainWindow::receiceWordToChange(QString name)
+{
+    bool ok;
+    QString new_name = QInputDialog::getText(this, "Введите слово для поиска", "слово:", QLineEdit::Normal, "", &ok);
+
+    if(ok)
+    {
+        if(new_name.isEmpty())
+            QMessageBox::critical(this, "ERROR", "EMPTY FIELD");
+        else
+        {
+            dictionary.change_definition(name.toStdString(), new_name.toStdString());
+        }
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -73,13 +97,11 @@ void MainWindow::on_pushButton_3_clicked()
         QMessageBox::critical(this, "ERROR", "EMPTY DICTIONARY");
     else
     {
-        emit sendWords(dictionary);
+        del->enterWords(dictionary);
         del->show();
         this->close();
     }
-
 }
-
 
 void MainWindow::on_action_3_triggered()
 {
@@ -108,4 +130,16 @@ void MainWindow::on_action_4_triggered()
 void MainWindow::on_action_5_triggered()
 {
     dictionary.empty_dictionary();
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    if(dictionary.getSize() == 0)
+        QMessageBox::critical(this, "ERROR", "EMPTY DICTIONARY");
+    else
+    {
+        change->enterWord(dictionary);
+        change->show();
+        this->close();
+    }
 }
