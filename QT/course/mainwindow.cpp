@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(del, &Delete::firstWindow, this, &MainWindow::show);
 
     connect(enter, SIGNAL(sendData(QString, QString)), this, SLOT(receiveData(QString, QString)));
-    connect(this, SIGNAL(sendWords(Dictionary &dictionary)), del, SLOT(receiveData(Dictionary &dicitonary)));
+    connect(this, SIGNAL(sendWords(Dictionary &dictionary)), del, SLOT(receiveData(Dictionary &dictionary)));
 }
 
 MainWindow::~MainWindow()
