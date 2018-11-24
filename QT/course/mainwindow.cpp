@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(enter, SIGNAL(sendData(QString, QString)), this, SLOT(receiveData(QString, QString)));
     connect(del, SIGNAL(sendWordToDelete(QString)), this, SLOT(receiceWordToDelete(QString)));
-    connect(change, SIGNAL(sendWordToChange(QString)), this, SLOT(receiceWordToChange(QString)));
+    connect(change, SIGNAL(sendWordToChange(QString, int)), this, SLOT(receiceWordToChange(QString, int)));
 }
 
 MainWindow::~MainWindow()
@@ -36,7 +36,7 @@ void MainWindow::receiceWordToDelete(QString name)
     dictionary.delete_word(name.toStdString());
 }
 
-void MainWindow::receiceWordToChange(QString name)
+void MainWindow::receiceWordToChange(QString name, int number)
 {
     bool ok;
     QString new_name = QInputDialog::getText(this, "Введите слово для поиска", "слово:", QLineEdit::Normal, "", &ok);
@@ -47,7 +47,7 @@ void MainWindow::receiceWordToChange(QString name)
             QMessageBox::critical(this, "ERROR", "EMPTY FIELD");
         else
         {
-            dictionary.change_definition(name.toStdString(), new_name.toStdString());
+            dictionary.change_definition(name.toStdString(), new_name.toStdString(), number);
         }
     }
 }

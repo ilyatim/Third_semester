@@ -25,7 +25,7 @@ private slots:
 
     void receiceWordToDelete(QString);
 
-    void receiceWordToChange(QString);
+    void receiceWordToChange(QString, int);
 
     void on_pushButton_clicked();
 

@@ -33,7 +33,8 @@ void Change::on_pushButton_2_clicked()
 void Change::on_pushButton_clicked()
 {
     QString name = ui->comboBox->currentText();
-    emit sendWordToChange(name);
+    int number_of_name = ui->comboBox->currentIndex();
+    emit sendWordToChange(name, number_of_name);
     this->close();
     ui->comboBox->clear();
     emit firstWindow();

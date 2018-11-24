@@ -38,16 +38,21 @@ bool Dictionary::search(string name)
       return false;
 }
 
-void Dictionary::change_definition(string name, string new_name)
+void Dictionary::change_definition(string name, string new_name, int number)
 {
-  multimap <string, string>::iterator it = mapDictionary.begin();
-  for(it; it != mapDictionary.end(); it++)
+  if(exist_key(name, new_name))
+      QMessageBox::critical(0, "ERROR", "EXIST DEFINITION");
+  else
   {
-    if(it->first == name)
-    {
-      it->second = new_name;
-      break;
-    }
+      multimap <string, string>::iterator it = mapDictionary.begin();
+      for(int i = 0; it != mapDictionary.end(); it++, i++)
+      {
+        if(it->first == name && i == number)
+        {
+          it->second = new_name;
+          break;
+        }
+      }
   }
 }
 QString Dictionary::output()

@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\dictionary.o
+./release\vvod_slov.o
+./release\delete.o
+./release\change.o
+./release\qrc_resouce.o
+./release\moc_mainwindow.o
+./release\moc_vvod_slov.o
+./release\moc_delete.o
+./release\moc_change.o
+);

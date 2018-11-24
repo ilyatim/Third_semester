@@ -18,7 +18,7 @@ public:
     void enterWord(Dictionary&);
 signals:
     void firstWindow();
-    void sendWordToChange(QString);
+    void sendWordToChange(QString, int);
 private slots:
     void on_pushButton_2_clicked();
 

@@ -16,7 +16,7 @@ public:
   void new_word(std::string name_1, std::string name_2);
   void delete_word(std::string name);
   bool search(std::string name);
-  void change_definition(std::string name, std::string new_name);
+  void change_definition(std::string name, std::string new_name, int number);
   QString output();
   void in_text(QString name);
   void from_text(QString name, Dictionary &dictionary);
