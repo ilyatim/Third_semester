@@ -2,21 +2,26 @@ package prackt_8;
 
 public class Drink extends MenuItem implements Alcoholable
 {
-    private final int price;
-    private final String name;
-    private final String description;
+    private double alcoholDegree; // number of degree in the drink
+    private DrinkTypeEnum typeEnum; // type of drink (non Alcoholic or alcoholic)
 
-    public Drink(int price, String name, String description)
+    public Drink(int price, String name, String description, double alcoholDegree, DrinkTypeEnum typeEnum)
     {
-        this.price = price;
-        this.description = description;
-        this.name = name;
+        super(price, name, description);
+        this.alcoholDegree = alcoholDegree;
+        this.typeEnum = typeEnum;
     }
-    public Drink(String name, String description)
+    public Drink(int price, String name, String description, DrinkTypeEnum typeEnum)
     {
-        this.name = name;
-        this.description = description;
-        this.price = 0;
+        super(price, name, description);
+        this.alcoholDegree = 0;
+        this.typeEnum = typeEnum;
+    }
+    public Drink(String name, DrinkTypeEnum typeEnum)
+    {
+        super(0 , name, null);
+        this.alcoholDegree = 0;
+        this.typeEnum = typeEnum;
     }
     public int getPrice()
     {
@@ -30,16 +35,51 @@ public class Drink extends MenuItem implements Alcoholable
     {
         return description;
     }
+
+    //check for the presence of alcohol
     public boolean isAlcoholicDrink()
     {
-        return true;
+        if(alcoholDegree > 0)
+            return true;
+        else
+            return false;
     }
+    // return number of alcohol degree
     public double getAlcoholVol()
     {
-        return 1;
+        return alcoholDegree;
     }
+    // return the type of the drink
     public DrinkTypeEnum getType()
     {
-        return DrinkTypeEnum.BEER;
+        return typeEnum;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Drink:" + typeEnum + name + "-" + price + ",Alcohol" + alcoholDegree + "% -" + description;
+    }
+    @Override
+    public boolean equals(Object object)
+    {
+        if(object == null || object.getClass() != this.getClass())
+            return false;
+        if(object == this)
+            return true;
+        else
+            return false;
+    }
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 5;
+        result = prime * result + price;
+        result = prime * result + name.hashCode();
+        result = prime * result + description.hashCode();
+        result = prime * result + (int)alcoholDegree;
+        result = prime * result + typeEnum.hashCode();
+        return result;
     }
 }
